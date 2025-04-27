@@ -1,5 +1,7 @@
 package com.shophub.product.adapters.in.controllers.dto;
 
+import com.shophub.product.application.core.domain.enums.ProductType;
+
 import java.util.UUID;
 
 public class ProductResponse {
@@ -8,6 +10,7 @@ public class ProductResponse {
     private Double price;
     private String description;
     private Integer amount;
+    private ProductType productType;
 
     public UUID getId() {
         return id;
@@ -47,5 +50,13 @@ public class ProductResponse {
 
     public void setAmount(Integer amount) {
         this.amount = amount;
+    }
+
+    public ProductType getProductType() {
+        return productType;
+    }
+
+    public void setProductType(ProductType productType) {
+        this.productType = productType;
     }
 }

@@ -1,6 +1,7 @@
 package com.shophub.product.application.core.domain;
 
 import com.shophub.product.adapters.in.controllers.dto.ProductResponse;
+import com.shophub.product.application.core.domain.enums.ProductType;
 
 import java.util.Objects;
 
@@ -10,12 +11,17 @@ public class ProductDomain {
     private Double price;
     private String description;
     private Integer amount;
+    private ProductType productType;
 
-    public ProductDomain(String name, Double price, String description, Integer amount) {
+    public ProductDomain(String name, Double price, String description, Integer amount, ProductType productType) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.amount = amount;
+        this.productType = productType;
+    }
+
+    public ProductDomain() {
     }
 
     public String getName() {
@@ -48,6 +54,14 @@ public class ProductDomain {
 
     public void setAmount(Integer amount) {
         this.amount = amount;
+    }
+
+    public ProductType getProductType() {
+        return productType;
+    }
+
+    public void setProductType(ProductType productType) {
+        this.productType = productType;
     }
 
     @Override
