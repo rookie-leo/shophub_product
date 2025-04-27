@@ -37,4 +37,9 @@ public class ProductUseCase implements ProductInputPort {
     public ProductResponse updateProduct(UUID productId, ProductRequest productRequest) {
         return productAdapter.updateProduct(productId, productRequest.toDomain());
     }
+
+    @Override
+    public void deleteProduct(UUID productId) {
+        productAdapter.deleteProduct(productId);
+    }
 }

@@ -14,4 +14,6 @@ public interface ProductOutPutPort {
     ProductResponse getProductByName(String name);
 
     ProductResponse updateProduct(UUID productId, ProductDomain domain);
+
+    void deleteProduct(UUID productId);
 }
