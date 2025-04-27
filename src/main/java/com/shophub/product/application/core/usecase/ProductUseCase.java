@@ -5,7 +5,6 @@ import com.shophub.product.adapters.in.controllers.dto.ProductResponse;
 import com.shophub.product.application.core.domain.ProductDomain;
 import com.shophub.product.application.ports.in.ProductInputPort;
 import com.shophub.product.application.ports.out.ProductOutPutPort;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 

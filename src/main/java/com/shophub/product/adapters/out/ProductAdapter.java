@@ -5,6 +5,7 @@ import com.shophub.product.adapters.out.repositories.ProductEntity;
 import com.shophub.product.adapters.out.repositories.ProductRepository;
 import com.shophub.product.application.core.domain.ProductDomain;
 import com.shophub.product.application.ports.out.ProductOutPutPort;
+import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +23,7 @@ public class ProductAdapter implements ProductOutPutPort {
     }
 
     @Override
+    @Transactional
     public ProductResponse create(ProductDomain productDomain) {
         var productEntity = productRepository.save(modelMapper.map(productDomain, ProductEntity.class));
         return modelMapper.map(productEntity, ProductResponse.class);

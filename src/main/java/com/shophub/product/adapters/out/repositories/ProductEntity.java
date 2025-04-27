@@ -1,6 +1,7 @@
 package com.shophub.product.adapters.out.repositories;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.shophub.product.application.core.domain.enums.ProductType;
 import jakarta.persistence.*;
 
 import java.util.UUID;
@@ -25,6 +26,10 @@ public class ProductEntity {
 
     @Column(nullable = false)
     private Integer amount;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private ProductType productType;
 
     public UUID getId() {
         return id;
@@ -64,5 +69,13 @@ public class ProductEntity {
 
     public void setAmount(Integer amount) {
         this.amount = amount;
+    }
+
+    public ProductType getProductType() {
+        return this.productType;
+    }
+
+    public void setProductType(ProductType productType) {
+        this.productType = productType;
     }
 }
