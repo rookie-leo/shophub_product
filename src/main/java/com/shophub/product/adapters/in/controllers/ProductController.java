@@ -4,6 +4,7 @@ import com.shophub.product.adapters.in.controllers.dto.ProductRequest;
 import com.shophub.product.adapters.in.controllers.dto.ProductResponse;
 import com.shophub.product.application.ports.in.ProductInputPort;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,5 +41,11 @@ public class ProductController {
             @PathVariable UUID productId,
             @Valid @RequestBody ProductRequest productRequest) {
         return ResponseEntity.ok(productUseCase.updateProduct(productId, productRequest));
+    }
+
+    @DeleteMapping("/{productId}")
+    public ResponseEntity<Object> deleteProduct(@PathVariable UUID productId) {
+        productUseCase.deleteProduct(productId);
+        return ResponseEntity.status(HttpStatus.OK).body("Product deleted successfully.");
     }
 }

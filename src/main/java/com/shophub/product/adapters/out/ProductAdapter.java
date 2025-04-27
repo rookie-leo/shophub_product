@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @Component
@@ -57,5 +58,14 @@ public class ProductAdapter implements ProductOutPutPort {
         product.setProductType(productDomain.getProductType());
 
         return modelMapper.map(productRepository.save(product), ProductResponse.class);
+    }
+
+    @Override
+    public void deleteProduct(UUID productId) {
+        try {
+            productRepository.delete(productRepository.findById(productId).get());
+        } catch (NoSuchElementException ex) {
+            throw new RuntimeException("Product not found.");// TODO - personalisar exception para ProductNotFoundException
+        }
     }
 }

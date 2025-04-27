@@ -14,4 +14,6 @@ public interface ProductInputPort {
     ProductResponse getByName(String name);
 
     ProductResponse updateProduct(UUID productId, ProductRequest productRequest);
+
+    void deleteProduct(UUID productId);
 }
