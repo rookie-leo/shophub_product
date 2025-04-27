@@ -5,6 +5,9 @@ import com.shophub.product.adapters.in.controllers.dto.ProductResponse;
 import com.shophub.product.application.core.domain.ProductDomain;
 import com.shophub.product.application.ports.in.ProductInputPort;
 import com.shophub.product.application.ports.out.ProductOutPutPort;
+import org.springframework.http.ResponseEntity;
+
+import java.util.List;
 
 public class ProductUseCase implements ProductInputPort {
 
@@ -18,5 +21,15 @@ public class ProductUseCase implements ProductInputPort {
     public ProductResponse create(ProductRequest productRequest) {
         ProductDomain productDomain = productRequest.toDomain();
         return productAdapter.create(productDomain);
+    }
+
+    @Override
+    public List<ProductResponse> getAllProducts() {
+        return productAdapter.getAllProducts().stream().filter(p -> p.getAmount() > 0).toList();
+    }
+
+    @Override
+    public ProductResponse getByName(String name) {
+        return productAdapter.getProductByName(name);
     }
 }

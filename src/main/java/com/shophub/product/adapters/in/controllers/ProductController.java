@@ -7,6 +7,8 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -17,14 +19,18 @@ public class ProductController {
         this.productUseCase = productServicePort;
     }
 
-    @GetMapping()
-    public String test() {
-        return "Hello world!";
-    }
-
     @PostMapping()
     public ResponseEntity<ProductResponse> create(@Valid @RequestBody ProductRequest product) {
         return ResponseEntity.status(201).body(productUseCase.create(product));
     }
 
+    @GetMapping()
+    public ResponseEntity<List<ProductResponse>> getAllProducts() {
+        return ResponseEntity.ok(productUseCase.getAllProducts());
+    }
+
+    @GetMapping("/{name}")
+    public ResponseEntity<ProductResponse> getByName(@PathVariable String name) {
+        return ResponseEntity.ok(productUseCase.getByName(name));
+    }
 }
