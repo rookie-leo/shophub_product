@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.UUID;
 
 @Component
 public class ProductAdapter implements ProductOutPutPort {
@@ -40,5 +41,21 @@ public class ProductAdapter implements ProductOutPutPort {
     @Override
     public ProductResponse getProductByName(String name) {
         return modelMapper.map(productRepository.findByName(name), ProductResponse.class);
+    }
+
+    @Override
+    public ProductResponse updateProduct(UUID productId, ProductDomain productDomain) {
+        var oldProduct = productRepository.findById(productId);
+
+        if (oldProduct.isEmpty()) throw new RuntimeException("Product not found!");// TODO - personalisar exception para ProductNotFoundException
+
+        var product = oldProduct.get();
+        product.setName(productDomain.getName());
+        product.setPrice(productDomain.getPrice());
+        product.setDescription(productDomain.getDescription());
+        product.setAmount(productDomain.getAmount());
+        product.setProductType(productDomain.getProductType());
+
+        return modelMapper.map(productRepository.save(product), ProductResponse.class);
     }
 }

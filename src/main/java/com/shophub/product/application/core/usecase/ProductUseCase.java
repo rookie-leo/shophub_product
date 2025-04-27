@@ -7,6 +7,7 @@ import com.shophub.product.application.ports.in.ProductInputPort;
 import com.shophub.product.application.ports.out.ProductOutPutPort;
 
 import java.util.List;
+import java.util.UUID;
 
 public class ProductUseCase implements ProductInputPort {
 
@@ -30,5 +31,10 @@ public class ProductUseCase implements ProductInputPort {
     @Override
     public ProductResponse getByName(String name) {
         return productAdapter.getProductByName(name);
+    }
+
+    @Override
+    public ProductResponse updateProduct(UUID productId, ProductRequest productRequest) {
+        return productAdapter.updateProduct(productId, productRequest.toDomain());
     }
 }

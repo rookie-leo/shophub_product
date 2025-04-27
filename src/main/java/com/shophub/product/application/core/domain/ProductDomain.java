@@ -1,6 +1,5 @@
 package com.shophub.product.application.core.domain;
 
-import com.shophub.product.adapters.in.controllers.dto.ProductResponse;
 import com.shophub.product.application.core.domain.enums.ProductType;
 
 import java.util.Objects;
