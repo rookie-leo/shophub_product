@@ -48,4 +48,9 @@ public class ProductController {
         productUseCase.deleteProduct(productId);
         return ResponseEntity.status(HttpStatus.OK).body("Product deleted successfully.");
     }
+
+    @GetMapping("/teste")
+    public String uuidGenerator() {
+        return UUID.randomUUID().toString();
+    }
 }
